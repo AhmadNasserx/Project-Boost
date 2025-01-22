@@ -1,7 +1,7 @@
 extends RigidBody3D
 
 @export_range(750, 3000) var Thrust: float = 1000.0
-@export var torque_thrust: float = 200.0
+@export var torque_thrust: float = 100.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -19,6 +19,14 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Goal"):
-		pass
+		complete_level()
 	if body.is_in_group("Hazard"):
-		pass
+		crash_sequence()
+
+
+func crash_sequence() -> void:
+	get_tree().reload_current_scene()
+
+
+func complete_level() -> void:
+	get_tree().quit()
