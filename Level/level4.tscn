@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b358ss66pupy8"]
+[gd_scene load_steps=10 format=3 uid="uid://b07uu31hfdft4"]
 
-[ext_resource type="PackedScene" uid="uid://cih7gm4sjbfr1" path="res://Player/player.tscn" id="1_7ndhp"]
-[ext_resource type="Script" path="res://Level/landing_pad.gd" id="1_xq86j"]
+[ext_resource type="Script" path="res://Level/landing_pad.gd" id="1_xmvdn"]
+[ext_resource type="PackedScene" uid="uid://cih7gm4sjbfr1" path="res://Player/player.tscn" id="2_j4yuy"]
+[ext_resource type="PackedScene" uid="uid://bbu85bv15r8r4" path="res://hazard/moving_hazard.tscn" id="3_v8q7d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vst3o"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -51,11 +52,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.431, 0.2, 0)
 use_collision = true
 size = Vector3(2, 0.4, 2)
 material = SubResource("StandardMaterial3D_r80tx")
-script = ExtResource("1_xq86j")
-file_path = "res://Level/level2.tscn"
+script = ExtResource("1_xmvdn")
+file_path = "res://Level/level.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.981627, 0.190809, 0, -0.190809, 0.981627, 0, 3.3, 11)
 
-[node name="Player" parent="." instance=ExtResource("1_7ndhp")]
+[node name="Player" parent="." instance=ExtResource("2_j4yuy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.059, 1, 0)
+
+[node name="MovingHazard" parent="." instance=ExtResource("3_v8q7d")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.2832, 0)
+destination = Vector3(0, 2, 0)
+duration = 3.0
