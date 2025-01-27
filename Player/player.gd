@@ -3,6 +3,9 @@ extends RigidBody3D
 @export_range(750, 3000) var Thrust: float = 1000.0
 @export var torque_thrust: float = 100.0
 
+@onready var explosion_audio: AudioStreamPlayer = $ExplosionAudio
+@onready var success_audio: AudioStreamPlayer = $SuccessAudio
+
 var is_transitioning: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -29,14 +32,16 @@ func _on_body_entered(body: Node) -> void:
 
 
 func crash_sequence() -> void:
+	explosion_audio.play()
 	set_process(false)
 	is_transitioning = true
 	var tween = create_tween()
-	tween.tween_interval(1.0)
+	tween.tween_interval(2.5)
 	tween.tween_callback(get_tree().reload_current_scene)
 
 
 func complete_level(next_level_file: String) -> void:
+	success_audio.play()
 	set_process(false)
 	is_transitioning = true
 	var tween = create_tween()
