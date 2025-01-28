@@ -9,6 +9,8 @@ extends RigidBody3D
 @onready var booster_particles: GPUParticles3D = $BoosterParticles
 @onready var right_booster_particles: GPUParticles3D = $rightBoosterParticles
 @onready var left_booster_particles: GPUParticles3D = $leftBoosterParticles2
+@onready var explosion_particles: GPUParticles3D = $ExplosionParticles
+@onready var success_particles: GPUParticles3D = $SuccessParticles
 
 
 var is_transitioning: bool = false
@@ -49,6 +51,7 @@ func _on_body_entered(body: Node) -> void:
 
 
 func crash_sequence() -> void:
+	explosion_particles.emitting = true
 	explosion_audio.play()
 	set_process(false)
 	is_transitioning = true
@@ -58,6 +61,7 @@ func crash_sequence() -> void:
 
 
 func complete_level(next_level_file: String) -> void:
+	success_particles.emitting = true
 	success_audio.play()
 	set_process(false)
 	is_transitioning = true
