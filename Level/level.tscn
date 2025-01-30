@@ -1,23 +1,22 @@
 [gd_scene load_steps=9 format=3 uid="uid://b358ss66pupy8"]
 
 [ext_resource type="PackedScene" uid="uid://cih7gm4sjbfr1" path="res://Player/player.tscn" id="1_7ndhp"]
+[ext_resource type="PackedScene" uid="uid://caiful7x1n1hy" path="res://floor.tscn" id="1_d7i5m"]
 [ext_resource type="Script" path="res://Level/landing_pad.gd" id="1_xq86j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vst3o"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_1vc3a"]
+[sub_resource type="Sky" id="Sky_3kf0p"]
 sky_material = SubResource("ProceduralSkyMaterial_vst3o")
 
 [sub_resource type="Environment" id="Environment_fnjva"]
-background_mode = 2
-sky = SubResource("Sky_1vc3a")
+background_mode = 1
+sky = SubResource("Sky_3kf0p")
+ambient_light_source = 3
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13xji"]
-albedo_color = Color(0.803554, 2.88785e-06, 4.81307e-07, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l7g2"]
 albedo_color = Color(0, 1, 1, 1)
@@ -31,14 +30,10 @@ albedo_color = Color(1.20327e-07, 0.3312, 0.108746, 1)
 environment = SubResource("Environment_fnjva")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.843166, -0.307472, 0.441057, 0.197654, 0.58563, 0.786111, -0.500003, 0.749999, -0.43301, 0, 0, 5.35709)
 shadow_enabled = true
 
-[node name="Floor" type="CSGBox3D" parent="." groups=["Hazard"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
-use_collision = true
-size = Vector3(30, 8, 5)
-material = SubResource("StandardMaterial3D_13xji")
+[node name="Floor" parent="." instance=ExtResource("1_d7i5m")]
 
 [node name="LuanchPad" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.059, 0.2, 0)
@@ -55,7 +50,7 @@ script = ExtResource("1_xq86j")
 file_path = "res://Level/level2.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.981627, 0.190809, 0, -0.190809, 0.981627, 0, 3.3, 11)
+transform = Transform3D(1, 0, 0, 0, 0.981627, 0.190809, 0, -0.190809, 0.981627, 0, 5.04, 12.28)
 
 [node name="Player" parent="." instance=ExtResource("1_7ndhp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.059, 1, 0)
